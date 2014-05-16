@@ -15,6 +15,10 @@ class AdventuresController < ApplicationController
 		@adventure = Adventure.new
 	end	
 
+	def show
+		@adventure = Adventure.find(params[:id])
+	end	
+
 	def edit
 		@adventure = Adventure.find(params[:id])
 	end	
