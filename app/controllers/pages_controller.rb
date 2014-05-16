@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+  include PagesHelper
   before_action :load_adventure
 
   def index
