@@ -1,0 +1,9 @@
+Create New Adventure!
+
+<%= form_for @adventure do |f| %>
+  <%= f.text_field :title, placeholder: "Title" %>
+  <%= f.text_field :author, placeholder: "Author" %>
+  
+  <%= f.submit %>
+
+<% end %>

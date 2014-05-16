@@ -1,0 +1,11 @@
+This Is your index page</br>
+</br>
+<%= link_to "Add Adventure", new_adventure_path %></br>
+<br>
+<% @adventures.each do |adventure|%>
+  TITLE <%= adventure.title %>
+  AUTHOR <%= adventure.author %>
+  <%= link_to "edit", edit_adventure_path(adventure) %>
+</br>
+  <%#= adventure.url %>
+<% end %>
