@@ -1,0 +1,10 @@
+<h1>Create a new page!</h1>
+
+
+<%= form_for @page do |f| %>
+
+  <%= f.text_field :name, placeholder: "Title" %>
+  <%= f.text_area :text, placeholder: "Tell your story! Link to another storyline by typing [[link text|linked_to_page_name]]" %>
+  <%= f.submit %>
+
+<% end %>

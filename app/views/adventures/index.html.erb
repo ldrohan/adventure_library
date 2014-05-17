@@ -1,11 +1,18 @@
-This Is your index page</br>
-</br>
-<%= link_to "Add Adventure", new_adventure_path %></br>
-<br>
-<% @adventures.each do |adventure|%>
-  TITLE <%= adventure.title %>
-  AUTHOR <%= adventure.author %>
-  <%= link_to "edit", edit_adventure_path(adventure) %>
-</br>
-  <%#= adventure.url %>
+<h1>Adventures</h1>
+
+<%= link_to "Add Adventure", new_adventure_path, :class => "btn btn-success" %>  
+
+  <% @adventures.each do |adventure| %>
+    <li><b><%= adventure.author %>:
+    <%= link_to adventure.title, adventure_path(adventure) %>
+    <%#= @library.url %>
+    <%= link_to "Edit", edit_adventure_path(adventure), :class => "btn btn-info btn-sm" %></b></li>
+  <% end %>
+
+
+<!-- add new library from external site to list above -->
+
+<%= form_for @library do |l| %>
+  <%= l.text_field :url, placeholder: "http://example.com/" %>
+  <%= l.submit "Add a Library for Scraping"%>
 <% end %>
