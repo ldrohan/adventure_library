@@ -6,10 +6,17 @@
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
+
 <body>
+  <header><ol class="breadcrumb">
+  <li><a href="<%= root_path %>">Home</a></li>
+  <li><a href="<%= libraries_path %>">Libraries</a></li>
+</ol></header>
   <div class="container">
 <%= yield %>
 
   </div>
 </body>
 </html>
+
+

@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 name = "Luke"
-adv = Adventure.create!(:title => "#{name}'s Test Adventure", :author => name, :guid => "h7654hgvbvkjf", :library_id => 1)
+adv = Adventure.create!(:title => "#{name}'s Test Adventure", :author => name, :guid => "h7654hgvbvkjf", :library_id => nil )
 adv = Adventure.create!(:title => "#{name}'s Other Adventure", :author => name, :guid => "h7654hbvkjf", :library_id => nil)
 adv.pages.create!(:name => "start", :text => "This is a great text adventure which is beginning right now!  I can't wait to [[see the end|end]] or [[watch TV|end2]]")
 adv.pages.create!(:name => "end", :text => "Wow that adventure was amazing!")
