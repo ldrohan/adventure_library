@@ -22,6 +22,9 @@ class AdventuresController < ApplicationController
   end
 
   def update
+    adventure = Adventure.find(params[:id])
+    adventure.update_attributes adventure_params
+    redirect_to root_path
   end
 
   def show
