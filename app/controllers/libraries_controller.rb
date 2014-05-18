@@ -3,6 +3,10 @@ class LibrariesController < ApplicationController
 
   def index
     @libraries = Library.all
+    #binding.pry
+    @libraries.each do |library|
+      AdventureWorker.perform_async(library.id)
+    end  
   end
 
   def new
@@ -12,29 +16,27 @@ class LibrariesController < ApplicationController
   def show
   end
 
-  def scrape_library(library_id)
-    library = Library.find(library_id)
-    response1 = Typhoeus.get("#{library.url}/libraries.json")
-    result = JSON.parse(response1.body)
-    result["libraries"].each do |url_link|
-        if Library.find_by_url(url_link["url"])
-        else
-          @library = Library.new
-          @library.url = url_link["url"]
-          @library.save
-        end
-    end
-  end
+  # def scrape_library(library_id)
+  #   library = Library.find(library_id)
+  #   response1 = Typhoeus.get("#{library.url}/libraries.json")
+  #   result = JSON.parse(response1.body)
+  #   result["libraries"].each do |url_link|
+  #       if Library.find_by_url(url_link["url"])
+  #       else
+  #         @library = Library.new
+  #         @library.url = url_link["url"]
+  #         @library.save
+  #       end
+  #   end
+  # end
 
   def create
-    @library = Library.create library_params
-  
-    if @library.save
-      scrape_library(@library)
-      redirect_to root_path
+    library = Library.new library_params
+    LibraryWorker.perform_async(library.url)
+    if library.save
+      redirect_to libraries_path
     else
       flash[:errors] = @adventure.errors.full_messages
-      render :edit
       redirect_to :back
     end
   end

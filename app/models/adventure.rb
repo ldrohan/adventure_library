@@ -4,3 +4,4 @@ class Adventure < ActiveRecord::Base
   accepts_nested_attributes_for :pages
   # accepts_nested_attributes_for :libraries
 end
+	

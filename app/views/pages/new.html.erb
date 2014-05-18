@@ -1,7 +1,16 @@
 <h1>Create a new page!</h1>
 
+<%#= form_tag (new_adventure_page_path) do %>
+  <%#= label_tag 'name', 'name' %>
+  <%#= text_field_tag 'name' %>
+   <%#= label_tag 'text', 'text' %>
+  <%#= text_area_tag 'text' %>
+  <%#= submit_tag "Submit" %>
+  <%# end %>
+  <%#= f.text_area :text, placeholder: "Tell your story! Link to another storyline by typing [[link text|linked_to_page_name]]" %>
+  <%#= f.submit %>
 
-<%= form_for @page do |f| %>
+<%= form_for @page, :url => { :action => "create" } do |f| %>
 
   <%= f.text_field :name, placeholder: "Title" %>
   <%= f.text_area :text, placeholder: "Tell your story! Link to another storyline by typing [[link text|linked_to_page_name]]" %>

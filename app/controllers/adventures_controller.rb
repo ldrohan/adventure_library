@@ -2,6 +2,8 @@ class AdventuresController < ApplicationController
 
   def index
     @adventures = Adventure.all
+    @local_adventures =Adventure.where(library_id: nil) 
+    #binding.pry
     @library = Library.new
     respond_to do |format|
       format.html
@@ -27,7 +29,7 @@ class AdventuresController < ApplicationController
     @adventure = Adventure.find(params[:id])
     @page = Page.new
     @start = Adventure.find(@adventure).pages.find_by(name: "start")
-    redirect_to adventure_page_path(@adventure)
+    redirect_to adventure_page_path(@adventure, @start)
   end
 
   def create

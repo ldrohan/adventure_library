@@ -1,12 +1,21 @@
 <h1>Adventures</h1>
+<h3>LOCAL ADVENTURES</h3>
+<% @local_adventures.each do |adventure| %>
+  <li><b><%= adventure.author %>
+  <%= link_to adventure.title, adventure_path(adventure) %>
+  <%= link_to "Edit", edit_adventure_path(adventure), :class => "btn btn-info btn-sm" %></b></li>
+<% end %><br>
 
 <%= link_to "Add Adventure", new_adventure_path, :class => "btn btn-success" %>  
-
-  <% @adventures.each do |adventure| %>
-    <li><b><%= adventure.author %>:
-    <%= link_to adventure.title, adventure_path(adventure) %>
-    <%#= @library.url %>
-    <%= link_to "Edit", edit_adventure_path(adventure), :class => "btn btn-info btn-sm" %></b></li>
+<h3>Others ADVENTURES</h3>
+  
+    <% @adventures.each do |adventure| %>
+    <% if adventure.library_id %>
+     <li><b><%= adventure.author %>
+      <%= link_to adventure.title, adventure_path(adventure) %>
+      <%#= @library.url %>
+      <%= link_to "Edit", edit_adventure_path(adventure), :class => "btn btn-info btn-sm" %></b></li>
+    <%end%>
   <% end %>
 
 
