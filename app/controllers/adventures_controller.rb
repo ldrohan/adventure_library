@@ -2,7 +2,7 @@ class AdventuresController < ApplicationController
 
   def index
     @adventures = Adventure.all
-    @local_adventures =Adventure.where(library_id: nil) 
+    @local_adventures =Adventure.where(library_id: nil)
     #binding.pry
     @library = Library.new
     respond_to do |format|
@@ -38,20 +38,16 @@ class AdventuresController < ApplicationController
   def create
     @adventure = Adventure.new adventure_params
     @adventure.guid = SecureRandom.urlsafe_base64(10)
-    # request = Typhoeus.post("url/email.json", params: {email: params[:email], contact: @contact.email})
     if @adventure.save
-    redirect_to new_adventure_page_path(@adventure)
+      redirect_to new_adventure_page_path(@adventure)
     else
       flash[:errors] = @adventure.errors.full_messages
       render :edit
       redirect_to :back
     end
-    # if @library.save
-    #   redirect_to adventure_libraries_path
-    # end
   end
 
-private
+  private
   def adventure_params
     params.require(:adventure).permit(:title, :author, :pages_attributes=>[:name, :text], :libraries_attributes=>[:url])
   end

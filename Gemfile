@@ -38,6 +38,7 @@ group :test, :development do
   gem 'pry'
   gem 'pry-byebug'
   gem 'dotenv-rails'
+  gem 'unicorn-rails'
 end
 
 # Use ActiveModel has_secure_password
